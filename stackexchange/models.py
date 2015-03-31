@@ -406,11 +406,11 @@ class User(JSONModel):
         return self.site.build('users/%d/comments/%d' % (self.id, uid), Comment, 'comments' ,kw)
 
     def __unicode__(self):
-        return 'User %d [%s]' % (self.id, self.display_name)
+        return u'User %d [%s]' % (self.id, self.display_name)
     def __str__(self):
-        return str(unicode(self))
+        return unicode(self).encode('ascii', 'replace')
     def __repr__(self):
-        return "<User '%s' (%d) @ %x>" % (self.display_name, self.id, id(self))
+        return u"<User '%s' (%d) @ %x>" % (self.display_name, self.id, id(self))
 
 class Privilege(JSONModel):
     transfer = ('short_description', 'description', 'reputation')
